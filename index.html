@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridip Pagag — Surveying, CAD &amp; Presentation Design</title>
+<meta name="description" content="Portfolio of Ridip Pagag — Project Coordinator (Surveying &amp; Land Acquisition), AutoCAD &amp; Excel educator, and presentation design enthusiast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F0F4F7;
+    --paper-dim: #E4EAEE;
+    --ink: #0F2333;
+    --ink-soft: #3C5568;
+    --blueprint: #1B4C7E;
+    --blueprint-deep: #12324F;
+    --blueprint-light: #BFD9EC;
+    --grid-line: rgba(27,76,126,0.10);
+    --flag: #E2611F;
+    --flag-deep: #B94A15;
+    --brass: #A9812E;
+    --paper-card: #FFFFFF;
+    --radius: 2px;
+    --maxw: 1120px;
+    --font-display: 'Big Shoulders Display', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Title block tag (signature structural device) ---------- */
+  .titleblock{
+    display:flex;
+    flex-wrap: wrap;
+    border: 1px solid var(--blueprint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blueprint-deep);
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+  .titleblock span{
+    padding: 6px 12px;
+    border-right: 1px solid var(--blueprint);
+  }
+  .titleblock span:last-child{ border-right: none; }
+  .titleblock .sht{ background: var(--blueprint); color: var(--paper); font-weight: 600; }
+
+  section{ padding: 84px 0; position: relative; }
+  section + section{ border-top: 1px solid var(--paper-dim); }
+
+  h2.section-title{
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(32px, 5vw, 52px);
+    margin: 0 0 8px;
+    line-height: 0.98;
+  }
+  .section-kicker{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--flag-deep);
+    margin: 0 0 18px;
+  }
+  .section-lede{
+    max-width: 680px;
+    color: var(--ink-soft);
+    font-size: 17px;
+    margin-bottom: 44px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: 1px solid var(--blueprint-light);
+  }
+  .nav-inner{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-decoration:none;
+    color: var(--paper);
+  }
+  .brand-mark{
+    width: 30px; height:30px;
+    border: 1.5px solid var(--flag);
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--flag);
+  }
+  nav.links{ display:flex; gap: 26px; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.05em; text-transform: uppercase; }
+  nav.links a{ text-decoration:none; color: var(--paper); opacity: 0.82; padding: 4px 2px; border-bottom: 1px solid transparent; transition: opacity .15s, border-color .15s; }
+  nav.links a:hover{ opacity: 1; border-color: var(--flag); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--blueprint-light); color:var(--paper); font-family: var(--font-mono); padding: 6px 10px; font-size: 12px; cursor:pointer; }
+
+  @media (max-width: 820px){
+    nav.links{
+      position: fixed; top: 56px; left:0; right:0;
+      background: var(--ink);
+      flex-direction: column;
+      gap:0;
+      max-height: 0;
+      overflow:hidden;
+      border-bottom: 1px solid var(--blueprint-light);
+      transition: max-height .25s ease;
+    }
+    nav.links.open{ max-height: 320px; }
+    nav.links a{ padding: 14px 28px; border-bottom: 1px solid rgba(191,217,236,0.15); width:100%; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top: 150px;
+    padding-bottom: 90px;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 36px 36px;
+    border-top: none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+    align-items:center;
+  }
+  @media (max-width: 820px){ .hero-grid{ grid-template-columns: 1fr; } .hero-photo{ order:-1; width:180px; margin: 0 auto; } }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blueprint);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{ content:''; width: 26px; height: 1px; background: var(--flag); display:inline-block; }
+
+  h1.hero-title{
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(48px, 8vw, 92px);
+    line-height: 0.92;
+    margin: 0 0 20px;
+    letter-spacing: 0.005em;
+  }
+  h1.hero-title em{
+    font-style: normal;
+    color: var(--blueprint);
+  }
+  .hero-sub{
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+  }
+  .hero-desc{ max-width: 540px; color: var(--ink-soft); font-size: 17px; margin-bottom: 32px; }
+
+  .cta-row{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 13px 22px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    border: 1px solid transparent;
+    cursor:pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--flag); color: #fff; box-shadow: 3px 3px 0 var(--ink); }
+  .btn-primary:hover{ box-shadow: 4px 5px 0 var(--ink); }
+  .btn-outline{ background: transparent; border-color: var(--ink); color: var(--ink); }
+  .btn-outline:hover{ background: var(--ink); color: var(--paper); }
+
+  .hero-photo{
+    position: relative;
+    width: 100%;
+    max-width: 260px;
+    margin-left: auto;
+  }
+  .photo-badge{
+    position: relative;
+    border: 2px solid var(--ink);
+    background: var(--paper-card);
+    padding: 10px;
+    box-shadow: 6px 6px 0 var(--blueprint-light);
+  }
+  .photo-badge img{
+    width:100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(1.05);
+  }
+  .photo-caption{
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align:center;
+    color: var(--ink-soft);
+    margin-top: 10px;
+  }
+  .stamp{
+    position:absolute;
+    top: -18px; right: -22px;
+    width: 84px; height: 84px;
+    border: 2px solid var(--flag);
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    transform: rotate(-14deg);
+    color: var(--flag);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.25;
+    background: rgba(226,97,31,0.05);
+  }
+
+  .hero-tagline{
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--blueprint-light);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    text-transform: uppercase;
+  }
+  .hero-tagline b{ color: var(--blueprint); }
+
+  /* ---------- About / strengths ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap: 48px; }
+  @media (max-width: 820px){ .about-grid{ grid-template-columns: 1fr; } }
+  .about-text p{ font-size: 16.5px; color: var(--ink-soft); margin-bottom: 18px; }
+  .strength-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .strength-list li{
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    padding: 14px 16px;
+    background: var(--paper-card);
+    border-left: 3px solid var(--flag);
+    box-shadow: 2px 2px 0 var(--paper-dim);
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-groups{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 28px; }
+  .skill-card{ background: var(--paper-card); border: 1px solid var(--paper-dim); padding: 22px; }
+  .skill-card h3{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--flag-deep);
+    margin: 0 0 14px;
+  }
+  .chip-row{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    padding: 7px 12px;
+    border: 1px solid var(--blueprint);
+    color: var(--blueprint-deep);
+    border-radius: 20px;
+  }
+
+  /* ---------- Education table ---------- */
+  table.edu{ width:100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 13.5px; background: var(--paper-card); }
+  table.edu caption{ text-align:left; font-family: var(--font-mono); font-size:11px; color: var(--ink-soft); margin-bottom:10px; text-transform:uppercase; letter-spacing:.08em;}
+  table.edu th, table.edu td{ border: 1px solid var(--paper-dim); padding: 12px 14px; text-align:left; }
+  table.edu th{ background: var(--ink); color: var(--paper); text-transform: uppercase; font-size: 11.5px; letter-spacing: 0.05em; }
+  table.edu tr:nth-child(even) td{ background: var(--paper-dim); }
+
+  /* ---------- Experience / chainage route ---------- */
+  .route{ position: relative; display:flex; }
+  .route-line-col{ position: relative; width: 46px; flex-shrink:0; }
+  .route-line-base, .route-line-progress{
+    position:absolute; left: 50%; top:0; bottom:0; width: 2px; transform: translateX(-50%);
+  }
+  .route-line-base{ background: var(--blueprint-light); }
+  .route-line-progress{ background: var(--flag); height: 0%; transition: height .1s linear; }
+  .route-items{ flex:1; display:flex; flex-direction:column; gap: 46px; }
+  .route-item{
+    position: relative;
+    padding-left: 6px;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .route-item.in-view{ opacity:1; transform:none; }
+  .route-dot{
+    position:absolute;
+    left: -46px; top: 4px;
+    width: 14px; height:14px;
+    border-radius:50%;
+    background: var(--paper);
+    border: 2px solid var(--blueprint-light);
+    transition: border-color .3s ease, background .3s ease;
+  }
+  .route-item.active .route-dot{ border-color: var(--flag); background: var(--flag); }
+  .chainage{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--flag-deep);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display:block;
+  }
+  .route-card{ background: var(--paper-card); border: 1px solid var(--paper-dim); padding: 22px 24px; }
+  .route-card h3{ font-family: var(--font-display); font-weight:700; text-transform:uppercase; font-size: 22px; margin: 0 0 4px; letter-spacing: .01em; }
+  .route-meta{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .03em; }
+  .route-card ul{ margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 15px; }
+  .route-card li{ margin-bottom: 6px; }
+  .status-pill{ display:inline-block; font-family: var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; padding: 3px 9px; border:1px solid var(--flag); color:var(--flag-deep); margin-left:8px; border-radius: 20px; }
+
+  @media (max-width: 620px){
+    .route-line-col{ width: 30px; }
+    .route-dot{ left: -30px; width:12px; height:12px; }
+  }
+
+  /* ---------- Certifications ---------- */
+  .cert-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 22px; }
+  .cert-seal{
+    background: var(--paper-card);
+    border: 1px dashed var(--brass);
+    padding: 24px 18px;
+    text-align:center;
+  }
+  .cert-seal .ring{
+    width: 56px; height:56px;
+    border: 2px solid var(--brass);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--brass);
+    font-size: 18px;
+  }
+  .cert-seal h4{ font-family: var(--font-mono); font-size: 13px; text-transform:uppercase; letter-spacing:.03em; margin: 0; color: var(--ink); }
+
+  /* ---------- Projects ---------- */
+  .proj-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; }
+  .proj-card{ background: var(--paper-card); border: 1px solid var(--paper-dim); padding: 26px; display:flex; flex-direction:column; height:100%; }
+  .proj-no{ font-family: var(--font-mono); font-size: 11px; color: var(--flag-deep); letter-spacing:.08em; margin-bottom: 10px; }
+  .proj-card h3{ font-family: var(--font-display); font-weight:700; text-transform:uppercase; font-size:22px; margin: 0 0 10px; }
+  .proj-card p{ color: var(--ink-soft); font-size: 14.5px; flex:1; margin-bottom: 14px; }
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .proj-tags span{ font-family: var(--font-mono); font-size: 10.5px; text-transform:uppercase; padding: 4px 8px; background: var(--paper-dim); color: var(--ink-soft); }
+
+  /* ---------- Gallery ---------- */
+  .gallery-note{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin: 0 0 32px; }
+  .gallery-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 20px; }
+  .gallery-card{ background: var(--blueprint-deep); padding: 18px; border: 1px solid var(--blueprint); }
+  .gallery-card svg{ width:100%; height:140px; }
+  .gallery-card figcaption{ font-family: var(--font-mono); font-size: 11.5px; color: var(--blueprint-light); text-transform:uppercase; letter-spacing:.05em; margin-top: 12px; }
+
+  /* ---------- YouTube ---------- */
+  .yt-section{ background: var(--ink); color: var(--paper); }
+  .yt-section .section-kicker{ color: var(--flag); }
+  .yt-section .section-lede{ color: var(--blueprint-light); }
+  .yt-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items:start; }
+  @media (max-width: 900px){ .yt-grid{ grid-template-columns: 1fr; } }
+  .yt-frame{ position:relative; width:100%; padding-top:56.25%; border: 1px solid var(--blueprint-light); background:#000; }
+  .yt-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .yt-stats{ display:grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--blueprint-light); margin-top: 18px; font-family: var(--font-mono); }
+  .yt-stats div{ background: var(--ink); padding: 14px 10px; text-align:center; }
+  .yt-stats strong{ display:block; font-size: 20px; color: var(--flag); font-family: var(--font-display); }
+  .yt-stats span{ font-size: 10px; text-transform:uppercase; letter-spacing:.06em; color: var(--blueprint-light); }
+  .yt-desc h3{ font-family: var(--font-display); text-transform:uppercase; font-size: 26px; margin: 0 0 6px; }
+  .yt-handle{ font-family: var(--font-mono); font-size: 12.5px; color: var(--blueprint-light); margin-bottom: 18px; display:block; }
+  .yt-desc p{ color: var(--blueprint-light); font-size: 14.5px; margin-bottom: 14px; }
+  .yt-tags{ font-family: var(--font-mono); font-size: 12px; color: var(--flag); margin-bottom: 24px; line-height:1.9; }
+  .btn-yt{ background: var(--flag); color:#fff; box-shadow: 3px 3px 0 var(--blueprint-light); }
+
+  /* ---------- Passions ---------- */
+  .passion-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 24px; }
+  .passion-card{ padding: 24px; background: var(--paper-card); border-top: 3px solid var(--blueprint); }
+  .passion-card h3{ font-family: var(--font-display); font-weight:700; text-transform:uppercase; font-size:20px; margin: 0 0 10px; }
+  .passion-card p{ font-size: 14px; color: var(--ink-soft); margin:0; }
+
+  /* ---------- Contact / title block footer ---------- */
+  footer.contact{ background: var(--blueprint-deep); color: var(--paper); padding: 70px 0 0; }
+  .contact-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap: 40px; margin-bottom: 50px; }
+  @media (max-width: 780px){ .contact-grid{ grid-template-columns: 1fr; } }
+  footer.contact h2{ font-family: var(--font-display); text-transform:uppercase; font-size: clamp(30px,5vw,46px); margin:0 0 14px; }
+  footer.contact p.lede{ color: var(--blueprint-light); max-width: 480px; margin-bottom: 26px; }
+  .contact-links{ display:flex; flex-direction:column; gap: 10px; font-family: var(--font-mono); font-size: 14px; }
+  .contact-links a{ text-decoration:none; color: var(--paper); border-bottom: 1px solid rgba(255,255,255,0.25); width: fit-content; padding-bottom:2px; }
+  .contact-links a:hover{ border-color: var(--flag); color: var(--flag); }
+  .titleblock-footer{
+    border: 1px solid var(--blueprint-light);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .tb-row{ display:flex; border-bottom: 1px solid var(--blueprint-light); }
+  .tb-row:last-child{ border-bottom:none; }
+  .tb-cell{ flex:1; padding: 12px 16px; border-right: 1px solid var(--blueprint-light); }
+  .tb-cell:last-child{ border-right:none; }
+  .tb-label{ display:block; font-size: 9.5px; text-transform:uppercase; letter-spacing:.08em; color: var(--flag); margin-bottom: 4px; }
+  .foot-strip{
+    margin-top: 50px;
+    border-top: 1px solid var(--blueprint);
+    padding: 20px 0;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--blueprint-light);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  ::selection{ background: var(--flag); color:#fff; }
+
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--flag); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark">RP</span> RIDIP PAGAG</a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#youtube">YouTube</a>
+      <a href="videos.html">Videos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Mumbai, India &middot; Open to work</p>
+        <h1 class="hero-title">Ridip<br><em>Pagag</em></h1>
+        <p class="hero-sub">Project Coordinator — Surveying &amp; Land Acquisition / AutoCAD &amp; Excel Educator</p>
+        <p class="hero-desc">I'm a civil engineer building a career at the intersection of data, design and delivery — coordinating land surveys for multimillion-rupee pipeline projects by day, and teaching AutoCAD &amp; Excel to 300+ learners on YouTube on the side. Now growing toward presentation design, MIS and reporting.</p>
+        <div class="cta-row">
+          <a href="#experience" class="btn btn-primary">View Experience ↓</a>
+          <a href="https://www.youtube.com/@CadXcel_Ridip" target="_blank" rel="noopener" class="btn btn-outline">Watch CADXcel Ridip ▶</a>
+        </div>
+        <div class="hero-tagline">
+          <span><b>50+ KM</b> routes surveyed</span>
+          <span><b>200+</b> landowner consents secured</span>
+          <span><b>90%</b> negotiation success rate</span>
+          <span><b>323</b> YouTube subscribers</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="photo-badge">
+          <img src="data:image/png;base64,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" alt="Ridip Pagag">
+          <div class="stamp">SITE<br>VERIFIED</div>
+        </div>
+        <p class="photo-caption">Ridip Pagag &middot; B.Tech Civil Engg.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 01</span><span>About</span><span>Scale: N.T.S.</span></div>
+      <h2 class="section-title">Objective</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Motivated and detail-oriented, I'm working to build a strong career across surveying, presentation design, MIS and reporting. I don't come from a traditional presentation-design background — I come from field surveys, land acquisition, and CAD drawings — but that's exactly what I bring to the table: structured, data-first thinking applied to how information is communicated.</p>
+          <p>I'm eager to apply my analytical, organizational and communication skills to support business operations, data management, reporting and creative presentation development — while continuing to sharpen my technical expertise in AutoCAD and Excel, both on the job and through the tutorials I publish for other learners.</p>
+        </div>
+        <ul class="strength-list">
+          <li>Quick learner — adapts fast to new tools and processes</li>
+          <li>Works well under pressure, consistently meets deadlines</li>
+          <li>Highly motivated to grow into a Presentation / MIS / RTA role</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE — CHAINAGE ROUTE ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 02</span><span>Experience</span><span>Route Profile</span></div>
+      <h2 class="section-title">The Route So Far</h2>
+      <p class="section-lede">Career mapped the way I map a survey route — as a line with waypoints. Each stake below is a role, plotted in the order it happened.</p>
+
+      <div class="route" id="routeContainer">
+        <div class="route-line-col">
+          <div class="route-line-base"></div>
+          <div class="route-line-progress" id="routeProgress"></div>
+        </div>
+        <div class="route-items">
+
+          <div class="route-item" data-pos="0">
+            <span class="route-dot"></span>
+            <span class="chainage">CH 00+000</span>
+            <div class="route-card">
+              <h3>Customer Care Executive</h3>
+              <div class="route-meta">Competent Synergies, Mohali, Punjab &middot; Oct 2019 – Dec 2019</div>
+              <ul>
+                <li>Handled 120+ inbound calls daily on billing, network issues and service activations.</li>
+                <li>Delivered a 95% first-call resolution rate and 98% customer satisfaction score.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="route-item" data-pos="22">
+            <span class="route-dot"></span>
+            <span class="chainage">CH 01+800</span>
+            <div class="route-card">
+              <h3>Customer Success Specialist</h3>
+              <div class="route-meta">Teleperformance India, Mohali, Punjab &middot; Feb 2020 – Oct 2023</div>
+              <ul>
+                <li>Reviewed high volumes of posts, images, videos and comments for policy violations.</li>
+                <li>Made rapid, context-aware moderation decisions and escalated complex cases to senior teams.</li>
+                <li>Analysed violation trends to recommend policy and tooling improvements.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="route-item" data-pos="46">
+            <span class="route-dot"></span>
+            <span class="chainage">CH 03+100</span>
+            <div class="route-card">
+              <h3>Team Leader / Assistant Manager, Contact Center</h3>
+              <div class="route-meta">Teleperformance India (AMCC), Mohali, Punjab &middot; Oct 2023 – Mar 2024</div>
+              <ul>
+                <li>Ran day-to-day team operations — assigning tasks and holding deadlines.</li>
+                <li>Led and motivated the team to hit performance goals.</li>
+                <li>Reported progress, challenges and wins to senior management.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="route-item" data-pos="68">
+            <span class="route-dot"></span>
+            <span class="chainage">CH 03+900</span>
+            <div class="route-card">
+              <h3>Volunteer Civil Engineer</h3>
+              <div class="route-meta">Yes Eco Civil Project &middot; 23–31 Dec 2024</div>
+              <ul>
+                <li>Contributed to the design and construction of an affordable swimming pool project.</li>
+                <li>Improved site plans for greater construction efficiency.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="route-item" data-pos="88">
+            <span class="route-dot"></span>
+            <span class="chainage">CH: Present</span>
+            <div class="route-card">
+              <h3>Project Coordinator <span class="status-pill">Current · Off Role</span></h3>
+              <div class="route-meta">Secon Pvt. Ltd., Mumbai, Maharashtra &middot; Jun 2025 – Present</div>
+              <ul>
+                <li>Coordinate end-to-end land acquisition across 50+ km pipeline routes — 200+ landowner consents, 90% negotiation success rate.</li>
+                <li>Oversee field survey teams using CAD/GIS for chainage mapping, terrain analysis and plot documentation, in line with Tehsildar and Forest Department requirements.</li>
+                <li>Run rate negotiations (3+ rounds/site), prepare KYC and consent paperwork, and clear delays such as pending signatures.</li>
+                <li>Own stakeholder follow-ups, cutting acquisition timelines by 20% through proactive coordination.</li>
+                <li>Maintain Excel-based project databases for chainage plotting and compensation tracking on multimillion-rupee bids.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 03</span><span>Skills</span><span>Legend</span></div>
+      <h2 class="section-title">Toolkit</h2>
+      <div class="skill-groups">
+        <div class="skill-card">
+          <h3>Technical</h3>
+          <div class="chip-row">
+            <span class="chip">AutoCAD 2D</span>
+            <span class="chip">AutoCAD 3D</span>
+            <span class="chip">MS Excel</span>
+            <span class="chip">MS PowerPoint</span>
+            <span class="chip">MS Word</span>
+            <span class="chip">CAD/GIS Mapping</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Working Style</h3>
+          <div class="chip-row">
+            <span class="chip">Team Management</span>
+            <span class="chip">Creative Problem-Solving</span>
+            <span class="chip">Critical Thinking</span>
+            <span class="chip">Efficiency Under Pressure</span>
+            <span class="chip">Stakeholder Coordination</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 04</span><span>Education</span><span>Schedule</span></div>
+      <h2 class="section-title">Education</h2>
+      <table class="edu">
+        <caption>Academic record</caption>
+        <thead>
+          <tr><th>Field of Study</th><th>School / University</th><th>Board</th><th>Year</th><th>Division</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>B.Tech, Civil Engineering</td><td>AGC</td><td>MRSPTU</td><td>2021</td><td>First Division</td></tr>
+          <tr><td>Science (PCM)</td><td>Dibrugarh University</td><td>AHSEC</td><td>2016</td><td>First Division</td></tr>
+          <tr><td>10th</td><td>BTSHSS</td><td>SEBA</td><td>2014</td><td>Second Division</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATIONS ============ -->
+  <section id="certifications">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 05</span><span>Certifications</span><span>Seals</span></div>
+      <h2 class="section-title">Certifications</h2>
+      <div class="cert-grid">
+        <div class="cert-seal"><div class="ring">01</div><h4>Supervisor Foundation</h4></div>
+        <div class="cert-seal"><div class="ring">02</div><h4>JUMP Supervisor</h4></div>
+        <div class="cert-seal"><div class="ring">03</div><h4>JUMP Certification for Supervisors</h4></div>
+        <div class="cert-seal"><div class="ring">04</div><h4>Market Quality Champion</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 06</span><span>Projects</span><span>Case Files</span></div>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-lede">Field surveys, teaching, and volunteer builds — the projects behind the résumé.</p>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-no">CASE FILE 01</div>
+          <h3>Pipeline Land Acquisition</h3>
+          <p>End-to-end coordination of land acquisition across 50+ km of pipeline route — surveys, landowner negotiations, KYC/consent documentation and compliance sign-off, at 90% negotiation success.</p>
+          <div class="proj-tags"><span>AutoCAD/GIS</span><span>Negotiation</span><span>Excel</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-no">CASE FILE 02</div>
+          <h3>CADXcel Ridip</h3>
+          <p>A YouTube channel teaching AutoCAD 2D/3D and Excel workflows to engineers, students and professionals — practical tutorials, formulas, and CAD + Excel integration tricks.</p>
+          <div class="proj-tags"><span>Teaching</span><span>AutoCAD</span><span>Excel</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-no">CASE FILE 03</div>
+          <h3>Affordable Swimming Pool</h3>
+          <p>Volunteer civil engineering work on an affordable swimming pool build — contributed to design and construction, and reworked site plans for better efficiency.</p>
+          <div class="proj-tags"><span>Volunteering</span><span>Site Planning</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-no">CASE FILE 04</div>
+          <h3>Contact Center Leadership</h3>
+          <p>Led a contact-center team as Assistant Manager — task assignment, coaching and performance reporting to senior management on a consistent cadence.</p>
+          <div class="proj-tags"><span>Leadership</span><span>Reporting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 07</span><span>Gallery</span><span>Field Sketches</span></div>
+      <h2 class="section-title">Field Sketches</h2>
+      <p class="gallery-note">Illustrative line work — swap these for real project and site photos any time.</p>
+      <div class="gallery-grid">
+
+        <figure class="gallery-card">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 100 L60 40 L100 70 L150 20 L190 60" stroke="#BFD9EC" stroke-width="2"/>
+            <circle cx="10" cy="100" r="4" fill="#E2611F"/>
+            <circle cx="60" cy="40" r="4" fill="#E2611F"/>
+            <circle cx="100" cy="70" r="4" fill="#E2611F"/>
+            <circle cx="150" cy="20" r="4" fill="#E2611F"/>
+            <circle cx="190" cy="60" r="4" fill="#E2611F"/>
+            <text x="10" y="115" fill="#BFD9EC" font-size="8" font-family="monospace">CH 00+000</text>
+            <text x="150" y="35" fill="#BFD9EC" font-size="8" font-family="monospace">CH 12+400</text>
+          </svg>
+          <figcaption>Route &amp; chainage mapping</figcaption>
+        </figure>
+
+        <figure class="gallery-card">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="20" width="90" height="60" stroke="#BFD9EC" stroke-width="1.5"/>
+            <path d="M120 80 L160 40 L160 100 Z" stroke="#E2611F" stroke-width="1.5"/>
+            <line x1="30" y1="30" x2="120" y2="30" stroke="#BFD9EC" stroke-width="1"/>
+            <line x1="30" y1="70" x2="120" y2="70" stroke="#BFD9EC" stroke-width="1"/>
+            <circle cx="75" cy="50" r="14" stroke="#BFD9EC" stroke-width="1"/>
+            <text x="30" y="14" fill="#BFD9EC" font-size="8" font-family="monospace">PLAN VIEW</text>
+          </svg>
+          <figcaption>AutoCAD 2D / 3D drafting</figcaption>
+        </figure>
+
+        <figure class="gallery-card">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#BFD9EC" stroke-width="1">
+              <line x1="20" y1="20" x2="180" y2="20"/>
+              <line x1="20" y1="40" x2="180" y2="40"/>
+              <line x1="20" y1="60" x2="180" y2="60"/>
+              <line x1="20" y1="80" x2="180" y2="80"/>
+              <line x1="20" y1="20" x2="20" y2="80"/>
+              <line x1="70" y1="20" x2="70" y2="80"/>
+              <line x1="120" y1="20" x2="120" y2="80"/>
+              <line x1="180" y1="20" x2="180" y2="80"/>
+            </g>
+            <rect x="70" y="40" width="50" height="20" fill="#E2611F" opacity="0.5"/>
+            <text x="20" y="98" fill="#BFD9EC" font-size="8" font-family="monospace">COMPENSATION.XLSX</text>
+          </svg>
+          <figcaption>Excel data &amp; reporting</figcaption>
+        </figure>
+
+        <figure class="gallery-card">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="15" width="160" height="90" stroke="#BFD9EC" stroke-width="1.5"/>
+            <rect x="30" y="25" width="60" height="35" stroke="#E2611F" stroke-width="1.5"/>
+            <line x1="100" y1="30" x2="170" y2="30" stroke="#BFD9EC" stroke-width="1"/>
+            <line x1="100" y1="42" x2="170" y2="42" stroke="#BFD9EC" stroke-width="1"/>
+            <line x1="100" y1="54" x2="150" y2="54" stroke="#BFD9EC" stroke-width="1"/>
+            <line x1="30" y1="75" x2="170" y2="75" stroke="#BFD9EC" stroke-width="1"/>
+            <line x1="30" y1="87" x2="140" y2="87" stroke="#BFD9EC" stroke-width="1"/>
+            <text x="20" y="10" fill="#BFD9EC" font-size="8" font-family="monospace">SLIDE 01</text>
+          </svg>
+          <figcaption>Presentation &amp; slide design</figcaption>
+        </figure>
+
+        <figure class="gallery-card">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 90 L190 90" stroke="#BFD9EC" stroke-width="1.5"/>
+            <path d="M20 90 L20 60 L50 45 L80 60 L80 90" stroke="#E2611F" stroke-width="1.5"/>
+            <path d="M110 90 L110 50 L150 30 L180 50 L180 90" stroke="#BFD9EC" stroke-width="1.5"/>
+            <text x="10" y="105" fill="#BFD9EC" font-size="8" font-family="monospace">LAND PLOT DOC.</text>
+          </svg>
+          <figcaption>Land &amp; plot documentation</figcaption>
+        </figure>
+
+        <figure class="gallery-card">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="30" width="140" height="60" rx="30" stroke="#BFD9EC" stroke-width="1.5"/>
+            <path d="M30 60 h140" stroke="#E2611F" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="30" y="20" fill="#BFD9EC" font-size="8" font-family="monospace">SITE PLAN — POOL</text>
+          </svg>
+          <figcaption>Volunteer site plan (pool)</figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ YOUTUBE ============ -->
+  <section id="youtube" class="yt-section">
+    <div class="wrap">
+      <div class="titleblock" style="border-color:var(--blueprint-light); color:var(--blueprint-light);"><span class="sht" style="background:var(--flag);">SHT 08</span><span style="border-color:var(--blueprint-light);">Channel</span><span>Broadcast</span></div>
+      <h2 class="section-title">CADXcel Ridip</h2>
+      <p class="section-lede">Everything I know about AutoCAD and Excel, packaged into practical, watchable tutorials.</p>
+
+      <div class="yt-grid">
+        <div>
+          <div class="yt-frame">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=UUfzLDORGFvlUfIgPs5oFsNQ" title="CADXcel Ridip — latest uploads" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="yt-stats">
+            <div><strong>323</strong><span>Subscribers</span></div>
+            <div><strong>17</strong><span>Videos</span></div>
+            <div><strong>46.5K</strong><span>Views</span></div>
+          </div>
+        </div>
+        <div class="yt-desc">
+          <h3>AutoCAD + Excel, made practical</h3>
+          <span class="yt-handle">@CadXcel_Ridip &middot; India &middot; Joined Jun 4, 2021</span>
+          <p>This channel is all about AutoCAD and Excel — two powerful tools that can boost your engineering, design and data skills. Expect practical techniques, professional workflows and real-world projects that help you work smarter and faster.</p>
+          <p>What you'll find: AutoCAD 2D &amp; 3D tutorials, Excel for engineers and project management, formulas and automation tricks, CAD + Excel integration, and real project walkthroughs — for students, engineers and working professionals alike.</p>
+          <p class="yt-tags">#AutoCAD #Excel #CADxcel_Ridip #EngineeringTools #DesignSmart</p>
+          <div class="cta-row">
+            <a href="https://www.youtube.com/@CadXcel_Ridip?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt">Subscribe on YouTube ▶</a>
+            <a href="videos.html" class="btn btn-outline" style="border-color:var(--blueprint-light); color:var(--paper);">Browse Video Library →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PASSIONS ============ -->
+  <section id="passions">
+    <div class="wrap">
+      <div class="titleblock"><span class="sht">SHT 09</span><span>Outside Work</span><span>Notes</span></div>
+      <h2 class="section-title">Beyond the Desk</h2>
+      <div class="passion-grid">
+        <div class="passion-card">
+          <h3>Presentation Design</h3>
+          <p>Building toward a career as a presentation specialist — combining creativity with structured thinking to turn ideas and data into clear, engaging slide decks.</p>
+        </div>
+        <div class="passion-card">
+          <h3>Outdoor Activities</h3>
+          <p>Hiking, cycling, camping and exploring new landscapes — a way to unwind, stay active, and stay connected to the world outside the screen.</p>
+        </div>
+        <div class="passion-card">
+          <h3>Jeet Kune Do</h3>
+          <p>Trained in Bruce Lee's philosophy of adaptability and simplicity — "using no way as way." A mindset of constant self-improvement, on and off the mat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ CONTACT / TITLE BLOCK FOOTER ============ -->
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <div class="titleblock" style="border-color:var(--blueprint-light); color:var(--blueprint-light);"><span class="sht" style="background:var(--flag);">SHT 10</span><span style="border-color:var(--blueprint-light);">Contact</span><span>Title Block</span></div>
+    <div class="contact-grid">
+      <div>
+        <h2>Let's Build<br>Something.</h2>
+        <p class="lede">Open to roles in presentation design, MIS, reporting, and project coordination — and always happy to talk AutoCAD, Excel, or land surveys.</p>
+        <div class="contact-links">
+          <a href="mailto:ridippagag196@gmail.com">ridippagag196@gmail.com</a>
+          <a href="tel:+918133987344">+91 81339 87344</a>
+          <a href="https://raiosh.in" target="_blank" rel="noopener">raiosh.in</a>
+          <a href="https://www.youtube.com/@CadXcel_Ridip" target="_blank" rel="noopener">youtube.com/@CadXcel_Ridip</a>
+        </div>
+      </div>
+      <div class="titleblock-footer">
+        <div class="tb-row">
+          <div class="tb-cell"><span class="tb-label">Based In</span>Mumbai, Maharashtra, IN</div>
+          <div class="tb-cell"><span class="tb-label">Status</span>Open to Work</div>
+        </div>
+        <div class="tb-row">
+          <div class="tb-cell"><span class="tb-label">Languages</span>Assamese, Hindi, English</div>
+          <div class="tb-cell"><span class="tb-label">Field</span>Civil Engineering</div>
+        </div>
+        <div class="tb-row">
+          <div class="tb-cell" style="border-right:none;"><span class="tb-label">Declaration</span>Information above reflects Ridip's professional experience to the best of his knowledge.</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-strip">
+      <span>© <span id="year"></span> Ridip Pagag</span>
+      <span>Drawn with care · Sheet 10 of 10</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal route items on scroll
+  const items = document.querySelectorAll('.route-item');
+  if (reduceMotion) {
+    items.forEach(it => it.classList.add('in-view', 'active'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.25 });
+    items.forEach(it => io.observe(it));
+  }
+
+  // Progress line + active dots tied to scroll position within the route
+  const routeContainer = document.getElementById('routeContainer');
+  const progressEl = document.getElementById('routeProgress');
+
+  function updateRouteProgress(){
+    if (!routeContainer) return;
+    const rect = routeContainer.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const total = rect.height;
+    let progressed = (vh * 0.75) - rect.top;
+    let pct = total > 0 ? (progressed / total) * 100 : 0;
+    pct = Math.max(0, Math.min(100, pct));
+    progressEl.style.height = pct + '%';
+    items.forEach(it => {
+      const pos = parseFloat(it.getAttribute('data-pos'));
+      it.classList.toggle('active', pct >= pos);
+    });
+  }
+
+  if (reduceMotion) {
+    progressEl.style.height = '100%';
+    items.forEach(it => it.classList.add('active'));
+  } else {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => { updateRouteProgress(); ticking = false; });
+        ticking = true;
+      }
+    });
+    window.addEventListener('resize', updateRouteProgress);
+    updateRouteProgress();
+  }
+</script>
+
+</body>
+</html>
